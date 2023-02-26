@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Articles</h1>
+    <h2>Créer un nouvel article <a href="{{ path('article_create') }}">ici</a></h2>
+
+    <ul>
+        {% for article in articles %}
+            <h3>{{ article.title }}</h3>
+            <h4>Auteur - {{ article.author.name }}</h4>
+
+            <li>Crée le {{ article.createdAt.format('Y-m-d H:i:s') }}
+
+            {% if article.createdAt != article.updatedAt %}
+                - Modifié le {{ article.updatedAt.format('Y-m-d H:i:s') }}
+            {% endif %}
+            </li>
+
+            <p>{{ article.content }}</p>
+            <a href="{{ path('article_show', {'id': article.id}) }}">voir</a>
+            <a href="{{ path('article_update', {'id': article.id}) }}">modifier</a>
+            </br>
+            <a href="{{ path('article_delete', {'id': article.id}) }}">supprimer</a>
+        {% endfor %}
+    </ul>
+{% endblock %}

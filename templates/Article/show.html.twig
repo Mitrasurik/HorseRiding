@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <h1>{{ article.title }}</h1>
+        <h2>Auteur - {{ article.author.name }}</h2>
+        <li>Crée le {{ article.createdAt.format('Y-m-d') }} - Modifié le {{ article.createdAt.format('Y-m-d') }}</li>
+        <p>{{ article.content }}</p>
+        <a href="{{ path('article_update', {'id': article.id}) }}">modifier</a>
+        </br>
+        <a href="{{ path('article_delete', {'id': article.id}) }}">supprimer</a>
+        </br>
+        <a href="{{ path('article_index') }}">retour</a>
+{% endblock %}
